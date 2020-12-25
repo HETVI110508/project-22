@@ -4,6 +4,9 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+var rectangle1;
+var rectangle2;
+var rectangle3;
 
 function preload()
 {
@@ -27,23 +30,25 @@ function setup() {
 	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255)
 
-
 	engine = Engine.create();
 	world = engine.world;
 
 	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.6, isStatic:false});
 	World.add(world, packageBody);
+
+	rectangle1 = new Rectangle(width/2,650,200,20);
+
+	rectangle2 = new Rectangle(500,610,20,100);
 	
-
+	rectangle3 = new Rectangle(310,610,20,100);  
+	
 	//Create a Ground
-	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
+	ground = Bodies.rectangle(width/2, 640, width, 1 , {isStatic:true} );
  	World.add(world, ground);
-
 
 	Engine.run(engine);
 	
 }
-
 
 function draw() {
   rectMode(CENTER);
@@ -52,6 +57,11 @@ function draw() {
   packageSprite.y= packageBody.position.y 
   drawSprites();
   //keyPressed(); 
+
+  rectMode(CENTER)  
+  rectangle1.display();
+  rectangle2.display();
+  rectangle3.display(); 
 }
 
 function keyPressed() {
